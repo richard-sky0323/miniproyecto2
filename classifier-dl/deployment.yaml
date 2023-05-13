@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: classifier-dl-deployment
+spec:
+  selector:
+    matchLabels:
+      app: classifier-dl
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: classifier-dl
+    spec:
+     containers:
+     - name: classifier-dl
+       image: richard0323/classifier-dl:latest
+       imagePullPolicy: Always
+       ports:
+       - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: classifier-dl-service
+spec:
+ selector:
+  app: classifier-dl
+ ports:
+ - name: http
+   port: 8080
+   targetPort: 8080
+ type: LoadBalancer
