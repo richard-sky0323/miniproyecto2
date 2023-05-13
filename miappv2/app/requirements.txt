@@ -1,0 +1,9 @@
+flask
+gluoncv
+matplotlib
+mxnet
+requests
+Pillow
+numpy
+typing
+pandas
